@@ -1,11 +1,22 @@
+const defaultTheme = require("tailwindcss/defaultTheme")
+
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
+  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  darkMode: false,
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      extend: {
+        fontFamily: {
+          "Roboto": ["Roboto", ...defaultTheme.fontFamily.sans],
+        },
+      },
+    },
   },
-  plugins: [],
+  plugins: [require("tw-elements/dist/plugin")],
 };
