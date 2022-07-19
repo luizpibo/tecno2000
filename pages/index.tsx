@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { Carousel } from "react-responsive-carousel";
 
 export default function Home() {
   const slides = [
@@ -7,31 +9,38 @@ export default function Home() {
       title: "Sustentabilidade",
       description:
         "O conceito de sustentabilidade vai além da conscientização. A Tecno 2000 se responsabiliza por um planeta melhor e tem como princípio o respeito pelo meio ambiente. ",
-      imgUrl: "/sustentabilidade.jpg",
+      imgUrl: "sustentabilidade.jpg",
     },
     {
       title: "Entrega",
       description:
         "Veja nossos cases, conheça um pouco mais dos nossos projetos.",
-      imgUrl: "/logistica.jpg",
+      imgUrl: "logistica.jpg",
     },
     {
       title: "Móveis sobmedida",
       description:
         "Por trás de um produto final de qualidade está um trabalho sério. Os cuidados do Tecno2000 vão das condições para o funcionário até o controle de cada etapa da produção.",
-      imgUrl: "/Projetos.jpg",
+      imgUrl: "projetos.jpg",
     },
     {
       title: "Serviços",
       description: "Contamos com serviços de montagem e transporte de móveis",
-      imgUrl: "/servicos.jpg",
+      imgUrl: "servicos.jpg",
     },
   ];
-
+  const [currentSlide, setCurrentSlide] = useState(0);
   return (
     <>
-      <header className="flex justify-between px-10 md:px-16 py-6 text-white w-full z-10 bg-gradient-to-b from-gray-800 absolute overflow-hidden">
-        <Image src="/logo.png" width={203} height={36} />
+      <header className="flex justify-between px-10 md:px-16 py-6 text-white w-full z-10 bg-gradient-to-b from-gray-600 absolute overflow-hidden">
+        <span>
+          <Image
+            src="/logo.png"
+            width={203}
+            height={36}
+            alt="logo da empresa"
+          />
+        </span>
         <nav>
           <ul className="flex gap-8 font-bold text-2xl">
             <li>
@@ -46,51 +55,63 @@ export default function Home() {
           </ul>
         </nav>
       </header>
-      <main className="bg-gray-100 min-h-screen w-full">
-        <section className="flex min-h-screen justify-center relative lg:justify-between items-center shadow-2xl">
-          <Image
-            src="/assets/screens/home/logistica.jpg"
-            layout="fill"
-            objectPosition="bottom"
-            objectFit="cover"
-          />
-          <div
-            className="
-          flex 
-          flex-col 
-          w-4/5
-          md:w-3/5 
-          lg:w-3/6
-          xl:w-2/5
-          mx-2 
-          md:mx-8
-          lg:mx-12 
-          xl:mx-14
-          p-3
-          md:p-5
-          lg:p-6
-          xl:p-7
-          gap-5 
-          justify-center
-          items-center
-          bg-slate-800 
-          bg-opacity-70
-          backdrop-blur-sm
-          shadow-2xl 
-          rounded-lg 
-          text-white
-          z-10
-          "
-          >
-            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-normal text-center">
-              Sustentabilidade
-            </h1>
-            <p className="text-sm lg:text-base xl:text-xl 2xl:text-4xl font-thin">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam,
-              praesentium reprehenderit tempore, dicta debitis assumenda
-              obcaecati odit odio possimus aut quia. Reprehenderit blanditiis
-              qui perspiciatis quos, provident quasi facere sed!
-            </p>
+      <main className="bg-gray-200">
+        <section className="shadow-2xl">
+          <div className="flex flex-col h-screen w-full justify-center items-center lg:items-start relative overflow-hidden">
+            <div
+              className="
+              flex flex-col gap-5 justify-center items-center
+              w-4/5 md:w-3/5 lg:w-3/6 xl:w-2/5
+              mx-2 md:mx-8 lg:mx-12 xl:mx-14
+              p-3 md:p-5 lg:p-6 xl:p-7
+              bg-slate-800 bg-opacity-70
+              shadow-lg 
+              rounded-lg 
+              backdrop-blur-sm
+              text-white
+              z-10
+              absolute
+              "
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-normal text-center">
+                {slides[currentSlide].title}
+              </h2>
+              <p className="text-sm lg:text-base xl:text-xl 2xl:text-4xl font-thin">
+                {slides[currentSlide].description}
+              </p>
+            </div>
+            <div className="w-full overflow-hidden">
+              <Carousel
+                autoPlay
+                infiniteLoop
+                showThumbs={false}
+                showStatus={false}
+                interval={3500}
+                onChange={(index) => {
+                  setCurrentSlide(index);
+                }}
+              >
+                {slides.map((slide, index) => {
+                  return (
+                    <div
+                      className="relative w-full h-screen"
+                      key={index + slide.title}
+                    >
+                      <Image
+                        src={`/assets/screens/home/${slide.imgUrl}`}
+                        layout="fill"
+                        objectPosition="center"
+                        objectFit="cover"
+                        alt={`imagem sobre ${slide.title}`}
+                        width={1920}
+                        height={1080}
+                        quality={100}
+                      />
+                    </div>
+                  );
+                })}
+              </Carousel>
+            </div>
           </div>
         </section>
         <section className="container mx-auto px-4 my-4">
