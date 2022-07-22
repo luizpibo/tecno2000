@@ -2,8 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
+import { GetStaticProps } from "next";
+import { getAllSlugPages } from "../src/API/querys";
 
-export default function Home() {
+export const getStaticProps: GetStaticProps = async () => {
+  const lines = await getAllSlugPages();
+  console.log("retorno do dato", lines);
+  return {
+    props: {
+      lines: lines,
+    },
+  };
+};
+
+export default function Home({ lines }) {
   const slides = [
     {
       title: "Sustentabilidade",
