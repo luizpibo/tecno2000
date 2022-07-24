@@ -44,7 +44,7 @@ export default function Home({ lines }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   return (
     <>
-      <header className="flex justify-between px-10 md:px-16 py-6 text-white w-full z-10 bg-gradient-to-b from-gray-600 absolute overflow-hidden">
+      <header className="flex justify-between px-10 md:px-16 py-6 text-slate-700 w-full z-50 fixed overflow-hidden shadow-xl rounded-b-xl backdrop-blur-sm bg-opacity-90 bg-gray-300">
         <span>
           <Image
             src="/logo.png"
@@ -54,14 +54,14 @@ export default function Home({ lines }) {
           />
         </span>
         <nav>
-          <ul className="flex gap-8 font-bold text-2xl">
-            <li>
+          <ul className="flex gap-8 font-bold text-xl">
+            <li className="decoration-gray-900 hover:scale-110 hover:underline transition">
               <Link href="/produtos">Produtos</Link>
             </li>
-            <li>
+            <li className="decoration-gray-900 hover:scale-110 hover:underline transition">
               <Link href="/clientes">Clientes</Link>
             </li>
-            <li>
+            <li className="decoration-gray-900 hover:scale-110 hover:underline transition">
               <Link href="/contatos">Contatos</Link>
             </li>
           </ul>
@@ -85,10 +85,10 @@ export default function Home({ lines }) {
               absolute
               "
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-normal text-center">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl 2xl:text-5xl font-normal text-center">
                 {slides[currentSlide].title}
               </h2>
-              <p className="text-sm lg:text-base xl:text-xl 2xl:text-4xl font-thin">
+              <p className="text-sm lg:text-base xl:text-xl 2xl:text-3xl font-thin">
                 {slides[currentSlide].description}
               </p>
             </div>

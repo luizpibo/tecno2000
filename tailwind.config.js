@@ -14,6 +14,7 @@ module.exports = {
       extend: {
         fontFamily: {
           "Roboto": ["Roboto", ...defaultTheme.fontFamily.sans],
+          "Barlow Condensed": ["Barlow Condensed", ...defaultTheme.fontFamily.sans]
         },
       },
     },
