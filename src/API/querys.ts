@@ -1,28 +1,31 @@
 import { request } from "./datocms";
 import { gql } from "graphql-request";
-const getAllPages = gql`
+const getAllPagesQuery = gql`
   {
     allPages {
       title
       slug
       content {
         ... on SectionWithTextAndImageRecord {
-          text
           textTitle
-          image {
-            url
-          }
+          text
+          position
           bgImage
           direction
+          image {
+            url
+            alt
+          }
         }
         ... on SlideRecord {
           slides {
-            bgImage
             direction
-            text
+            bgImage
             textTitle
+            text
             image {
               url
+              alt
             }
           }
         }
@@ -30,23 +33,99 @@ const getAllPages = gql`
     }
   }
 `;
-const getAllSlugPages = async () => {
-  const query = gql`
-    {
-      allPages {
-        slug
+
+const getAllSlugsQuery = gql`
+  {
+    allPages {
+      slug
+    }
+  }
+`;
+
+const getHomePageQuery = gql`
+  {
+    page(filter: { slug: { eq: "/" } }) {
+      slug
+      pageTitle
+      content {
+        ... on SectionWithTextAndImageRecord {
+          textTitle
+          text
+          position
+          bgImage
+          direction
+          image {
+            url
+            alt
+          }
+        }
+        ... on SlideRecord {
+          slides {
+            direction
+            bgImage
+            textTitle
+            text
+            image {
+              url
+              alt
+            }
+          }
+        }
+      }
+      heroContent {
+        ... on SectionWithTextAndImageRecord {
+          textTitle
+          text
+          position
+          bgImage
+          direction
+          image {
+            url
+            alt
+          }
+        }
+        ... on SlideRecord {
+          slides {
+            direction
+            bgImage
+            textTitle
+            text
+            image {
+              url
+              alt
+            }
+          }
+        }
+      }
+      metaTags {
+        description
+        image {
+          url
+        }
+        title
+        twitterCard
       }
     }
-  `;
+  }
+`;
+
+const getAllSlugPages = async () => {
   const data = await request({
-    query: getAllPages,
+    query: getAllSlugsQuery,
     variables: { limit: 10 },
   });
   console.log("todas as paginas", data);
-  console.log("Conteudo da pagina 0", data.allPages[0].content)
   // const slugs = allPages.map((line) => {
   //   return line.slug;
   // });
   return data;
 };
-export { getAllSlugPages };
+
+//Pega o conteúdo da home page
+const getHomePage = async () => {
+  const { page } = await request({
+    query: getHomePageQuery,
+  });
+  return page;
+};
+export { getAllSlugPages, getHomePage };
