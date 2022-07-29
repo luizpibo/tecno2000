@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
-import { HeaderH2 } from "../Atomos/headers";
+import { HeaderH2 } from "../Atomos/Headers";
 import { PrincipalText } from "../Atomos/Texts";
 
 interface Iimage {

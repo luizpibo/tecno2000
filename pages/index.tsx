@@ -4,6 +4,7 @@ import Link from "next/link";
 import { GetStaticProps } from "next";
 import { getHomePage } from "../src/API/querys";
 import { FullScreenSlide } from "../components/Moleculas/Slides";
+import { NavBar } from "../components/Moleculas/NavBar";
 
 export const getStaticProps: GetStaticProps = async () => {
   const homePageData = await getHomePage();
@@ -18,29 +19,7 @@ export const getStaticProps: GetStaticProps = async () => {
 export default function Home({ homePageData }) {
   return (
     <>
-      <header className="flex justify-between px-10 md:px-16 py-6 text-slate-700 w-full z-50 fixed overflow-hidden shadow-xl rounded-b-xl backdrop-blur-sm bg-opacity-90 bg-gray-300">
-        <span>
-          <Image
-            src="/logo.png"
-            width={203}
-            height={36}
-            alt="logo da empresa"
-          />
-        </span>
-        <nav>
-          <ul className="flex gap-8 font-bold text-xl">
-            <li className="decoration-gray-900 hover:scale-110 hover:underline transition">
-              <Link href="/produtos">Produtos</Link>
-            </li>
-            <li className="decoration-gray-900 hover:scale-110 hover:underline transition">
-              <Link href="/clientes">Clientes</Link>
-            </li>
-            <li className="decoration-gray-900 hover:scale-110 hover:underline transition">
-              <Link href="/contatos">Contatos</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <NavBar />
       <main className="bg-gray-200">
         <FullScreenSlide slides={homePageData.heroContent.slides} />
         <section className="container mx-auto px-4 my-4">
