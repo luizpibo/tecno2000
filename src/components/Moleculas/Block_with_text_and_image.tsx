@@ -26,7 +26,7 @@ const Block_with_text_and_image: React.FC<Props> = ({
       className={`
       ${direction != "content" && "flex-col-reverse"} 
       ${direction != "content" && "md:flex-row-reverse"} 
-      flex flex-col md:flex-row h-screen w-full justify-center overflow-hidden relative  mt-8 px-4 gap-4
+      flex flex-col md:flex-row h-screen w-full justify-center overflow-hidden relative px-4 mt-8 gap-4
       `}
     >
       <div className="flex flex-1 py-4 items-center justify-center">
@@ -34,7 +34,7 @@ const Block_with_text_and_image: React.FC<Props> = ({
           className="    
         flex flex-col gap-5 justify-center items-center
         bg-slate-800 bg-opacity-70 text-white z-10
-        shadow-2xl 
+        shadow-lg
         rounded-lg 
         backdrop-blur-sm
         w-fit h-fit

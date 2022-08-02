@@ -1,4 +1,5 @@
 import Block_with_text_and_image from "../Moleculas/Block_with_text_and_image";
+import Product_carousel from "../Moleculas/Product_carousel";
 
 interface Props {
   blocks: Array<Block_with_text_and_image_props>;
@@ -17,11 +18,26 @@ interface Slide {
   slides: Block_with_text_and_image_props[];
 }
 
+const switchBlockComponent = (block, ...rest) => {
+  switch (block._modelApiKey) {
+    case "block_with_text_and_image":
+      return <Block_with_text_and_image {...block} {...rest} />;
+    case "product_carousel":
+      return <Product_carousel products={block.products} />;
+    default:
+      return (
+        <div>
+          <h1>Carrouseu de produto</h1>
+        </div>
+      );
+  }
+};
+
 const Blocks: React.FC<Props> = ({ blocks }) => {
   return (
     <>
       {blocks.map((block) => {
-        return <Block_with_text_and_image {...block} key={block.textTitle} />;
+        return switchBlockComponent(block, `key=${block.textTitle}`);
       })}
     </>
   );

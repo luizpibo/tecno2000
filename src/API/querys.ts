@@ -73,6 +73,19 @@ const getPageQuery = (pageSlug: string) => {
               _modelApiKey
             }
           }
+          ... on ProductCarouselRecord {
+            _modelApiKey
+            products {
+              _modelApiKey
+              category
+              description
+              name
+              mainImage {
+                alt
+                url
+              }
+            }
+          }
         }
         hero {
           ... on BlockWithTextAndImageRecord {
@@ -118,7 +131,6 @@ const getAllSlugPages = async () => {
   const { slugs } = await request({
     query: getAllSlugsQuery,
   });
-  console.log("todas as paginas", slugs);
   // const slugs = allPages.map((line) => {
   //   return line.slug;
   // });
