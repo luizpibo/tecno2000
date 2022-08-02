@@ -1,15 +1,15 @@
 import { request } from "./datocms";
 import { gql } from "graphql-request";
+
 const getAllPagesQuery = gql`
   {
     allPages {
       title
       slug
       content {
-        ... on SectionWithTextAndImageRecord {
+        ... on BlockWithTextAndImageRecord {
           textTitle
           text
-          position
           bgImage
           direction
           image {
@@ -42,90 +42,95 @@ const getAllSlugsQuery = gql`
   }
 `;
 
-const getHomePageQuery = gql`
-  {
-    page(filter: { slug: { eq: "/" } }) {
-      slug
-      pageTitle
-      content {
-        ... on SectionWithTextAndImageRecord {
-          textTitle
-          text
-          position
-          bgImage
-          direction
-          image {
-            url
-            alt
-          }
-        }
-        ... on SlideRecord {
-          slides {
-            direction
-            bgImage
+const getPageQuery = (pageSlug: string) => {
+  return gql`
+    {
+      page(filter: { slug: { eq: "${pageSlug}" } }) {
+        slug
+        pageTitle
+        content {
+          ... on BlockWithTextAndImageRecord {
             textTitle
             text
+            direction
+            bgImage
             image {
               url
               alt
             }
+            _modelApiKey
+          }
+          ... on SlideRecord {
+            slides {
+              textTitle
+              text
+              direction
+              bgImage
+              image {
+                url
+                alt
+              }
+              _modelApiKey
+            }
           }
         }
-      }
-      heroContent {
-        ... on SectionWithTextAndImageRecord {
-          textTitle
-          text
-          position
-          bgImage
-          direction
-          image {
-            url
-            alt
-          }
-        }
-        ... on SlideRecord {
-          slides {
-            direction
-            bgImage
+        hero {
+          ... on BlockWithTextAndImageRecord {
             textTitle
             text
+            direction
+            bgImage
             image {
               url
               alt
             }
+            _modelApiKey
+          }
+          ... on SlideRecord {
+            slides {
+              direction
+              bgImage
+              textTitle
+              text
+              image {
+                url
+                alt
+              }
+              _modelApiKey
+            }
+            _modelApiKey
           }
         }
-      }
-      metaTags {
-        description
-        image {
-          url
+        metaTags {
+          description
+          image {
+            url
+          }
+          title
+          twitterCard
         }
-        title
-        twitterCard
       }
     }
-  }
-`;
+  `;
+};
 
 const getAllSlugPages = async () => {
-  const data = await request({
+  const { slugs } = await request({
     query: getAllSlugsQuery,
-    variables: { limit: 10 },
   });
-  console.log("todas as paginas", data);
+  console.log("todas as paginas", slugs);
   // const slugs = allPages.map((line) => {
   //   return line.slug;
   // });
-  return data;
+  return slugs;
 };
 
 //Pega o conteúdo da home page
-const getHomePage = async () => {
+const getPage = async (slug: string) => {
   const { page } = await request({
-    query: getHomePageQuery,
+    query: getPageQuery(slug),
   });
   return page;
 };
-export { getAllSlugPages, getHomePage };
+
+export { getAllSlugPages, getPage };

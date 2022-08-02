@@ -7,7 +7,8 @@ const NavBar = () => {
   return (
     <nav className="flex flex-wrap items-center justify-between px-8 md:px-6 py-5 2xl:py-12 text-slate-700 w-full z-50 fixed overflow-hidden shadow-xl rounded-b-xl backdrop-blur-sm bg-opacity-90 bg-gray-300">
       <div className="container flex flex-col md:flex-row flex-wrap items-center justify-center md:justify-between px-4 mx-auto ">
-        <span className="animate-bounce">
+        <span className="animate-
+        ">
           <Image
             src="/logo.png"
             width={203}

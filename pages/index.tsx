@@ -1,14 +1,12 @@
-import Image from "next/image";
-import Link from "next/link";
-
 import { GetStaticProps } from "next";
-import { getHomePage } from "../src/API/querys";
-import { FullScreenSlide } from "../components/Moleculas/Slides";
-import { NavBar } from "../components/Moleculas/NavBar";
+import { getPage } from "../src/API/querys";
+import { FullScreenSlide } from "../src/components/Moleculas/Slides";
+import { NavBar } from "../src/components/Moleculas/NavBar";
+import Head from "next/head";
+import Blocks from "../src/components/Organismos/Blocks";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const homePageData = await getHomePage();
-  console.log("Conteudo da página", homePageData);
+  const homePageData = await getPage("/");
   return {
     props: {
       homePageData: homePageData,
@@ -17,47 +15,21 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function Home({ homePageData }) {
+  const { pageTitle, hero, content } = homePageData;
+
   return (
     <>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
       <NavBar />
       <main className="bg-gray-200">
-        <FullScreenSlide slides={homePageData.heroContent.slides} />
-        <section className="container mx-auto px-4 my-4">
-          <h2 className="text-center"> Sobre nós </h2>
-          <div className="flex gap-4 justify-center items-center py-8 px-8">
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-          </div>
-        </section>
-        <section className="container mx-auto px-4 my-4">
-          <h2 className="text-center"> Principais produtos </h2>
-          <div className="flex gap-4 justify-center items-center py-8 px-8">
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-          </div>
-        </section>
-        <section className="container mx-auto px-4 my-4">
-          <h2 className="text-center"> Certificações </h2>
-          <div className="flex gap-4 justify-center items-center py-8 px-8">
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-          </div>
-        </section>
-        <section className="container mx-auto px-4 my-4">
-          <h2 className="text-center"> Clientes </h2>
-          <div className="flex gap-4 justify-center items-center py-8 px-8">
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-            <div className="max-w-xs bg-slate-500 h-10 w-10 p-8"></div>
-          </div>
-        </section>
+        <FullScreenSlide slides={hero.slides} />
+        <Blocks blocks={content} />
       </main>
-      <footer className="py-12 bg-zinc-900 text-white">
+      <footer className="h-40 bg-zinc-900 text-white">
         <div className="container m-auto">direitos reservados</div>
       </footer>
     </>
-  );
+  )
 }
