@@ -26,14 +26,14 @@ const Block_with_text_and_image: React.FC<Props> = ({
       className={`
       ${direction != "content" && "flex-col-reverse"} 
       ${direction != "content" && "lg:flex-row-reverse"} 
-      flex flex-col lg:flex-row lg:h-4/5 max-h-fit w-full justify-center overflow-hidden relative px-4 pt-4 pb-4 gap-4
+      flex flex-col lg:flex-row lg:h-4/5 max-h-fit w-full justify-center items-end overflow-hidden relative p-4 gap-4
       `}
     >
       <div
         className="    
         flex flex-col gap-4 flex-1 justify-center items-center
         bg-slate-800 bg-opacity-70 text-white z-10
-        shadow-lg
+        shadow-md
         rounded-3xl
         backdrop-blur-sm
         h-fit
