@@ -22,7 +22,7 @@ const FullScreenSlide = ({ slides }: { slides: Islide[] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <section className="shadow-2xl">
+    <section className="shadow-2xl mb-4">
       <div className="flex flex-col h-screen w-full justify-center items-center lg:items-start relative overflow-hidden">
         <div
           className="

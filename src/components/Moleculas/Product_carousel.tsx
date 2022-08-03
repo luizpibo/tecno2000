@@ -19,14 +19,13 @@ const Product_carousel: React.FC<IProduct_carousel> = ({ products }) => {
   const [currentProduct, setCurrentProduct] = useState<IProduct>(products[0]);
 
   return (
-    
-    <div className="relative h-fit">
+    <div className="relative h-fit" >
       <h2 className="text-center py-4 text-5xl font-bold">
         Alguns de nossos móveis
       </h2>
       <div className="flex flex-col lg:flex-row justify-center items-center gap-4 py-4 relative">
         <div className="h-fit w-full md:w-1/2 relative">
-          <span className="absolute w-full flex justify-center items-center">
+          <span className="absolute w-full h-full flex justify-center items-center">
             <span className="-skew-x-12 overflow-hidden h-96 w-72">
               <span className="flex flex-col gap-1 rotate-45 -translate-y-20 ">
                 <span className="flex bg-slate-600 w-fit -translate-x-36 shadow-sm">
@@ -54,7 +53,7 @@ const Product_carousel: React.FC<IProduct_carousel> = ({ products }) => {
           >
             {products.map((product) => {
               return (
-                <div className="h-96 w-full" key={product.name}>
+                <div className="h-96 w-full" key={product.name} style={{ minHeight: "30rem" }}>
                   <Image
                     src={product.mainImage.url}
                     alt={`Imagem do produto ${product.name}`}

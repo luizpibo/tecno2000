@@ -54,6 +54,8 @@ const getPageQuery = (pageSlug: string) => {
             text
             direction
             bgImage
+            verticalAlign
+            horizontalAlign
             image {
               url
               alt
@@ -93,6 +95,8 @@ const getPageQuery = (pageSlug: string) => {
             text
             direction
             bgImage
+            verticalAlign
+            horizontalAlign
             image {
               url
               alt

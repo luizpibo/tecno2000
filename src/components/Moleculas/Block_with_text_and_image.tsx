@@ -7,8 +7,10 @@ interface Props {
   textTitle: string;
   text: string;
   direction: string;
-  bgImage: boolean;
+  verticalAlign: string;
+  horizontalAlign: string;
   image: Iimage;
+  bgImage: boolean;
 }
 interface Iimage {
   url: string;
@@ -20,35 +22,43 @@ const Block_with_text_and_image: React.FC<Props> = ({
   textTitle,
   text,
   image,
+  verticalAlign,
+  horizontalAlign,
 }) => {
   return (
     <section
       className={`
-      ${direction != "content" && "flex-col-reverse"} 
-      ${direction != "content" && "lg:flex-row-reverse"} 
-      flex flex-col lg:flex-row lg:h-4/5 max-h-fit w-full justify-center items-end overflow-hidden relative p-4 gap-4
+      flex lg:h-4/5 max-h-fit w-full overflow-hidden relative pb-4 px-3 gap-4
+      ${direction == "content" ? "flex-col" : "flex-col-reverse"} 
+      ${direction == "content" ? "lg:flex-row" : "lg:flex-row-reverse"} 
+      ${verticalAlign === "start" && "items-start"}
+      ${verticalAlign === "center" && "items-center"}
+      ${verticalAlign === "end" && "items-end"}
+      ${bgImage && "p-4"}
+      ${bgImage && "w-full"}
+      ${bgImage && horizontalAlign === "start" && "justify-start"}
+      ${bgImage && horizontalAlign === "center" && "justify-center"}
+      ${bgImage && horizontalAlign === "end" && "justify-end"}
       `}
+      style={{ minHeight: "30rem" }}
     >
       <div
-        className="    
-        flex flex-col gap-4 flex-1 justify-center items-center
+        className={`  
+        flex flex-col gap-4 justify-center items-center
         bg-slate-800 bg-opacity-70 text-white z-10
         shadow-md
         rounded-3xl
         backdrop-blur-sm
         h-fit
+        w-full
+        lg:w-1/2
         px-4 md:px-8 py-12
-        "
+        `}
       >
         <HeaderH2>{textTitle}</HeaderH2>
         <PrincipalText>{text}</PrincipalText>
       </div>
-      <div
-        className={`${
-          !bgImage && "relative"
-        } rounded-3xl flex flex-1 w-full px-5`}
-        style={{ minHeight: "30rem" }}
-      >
+      {bgImage ? (
         <Image
           src={image.url}
           layout="fill"
@@ -56,7 +66,20 @@ const Block_with_text_and_image: React.FC<Props> = ({
           objectPosition="center"
           className={`${!bgImage && "rounded-3xl"}`}
         />
-      </div>
+      ) : (
+        <div
+          className={"relative rounded-3xl flex flex-1 w-full px-5"}
+          style={{ minHeight: "30rem" }}
+        >
+          <Image
+            src={image.url}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            className={`${!bgImage && "rounded-3xl"}`}
+          />
+        </div>
+      )}
     </section>
   );
 };
