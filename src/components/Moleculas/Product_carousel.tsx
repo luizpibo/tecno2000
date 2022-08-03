@@ -19,6 +19,7 @@ const Product_carousel: React.FC<IProduct_carousel> = ({ products }) => {
   const [currentProduct, setCurrentProduct] = useState<IProduct>(products[0]);
 
   return (
+    
     <div className="relative h-fit">
       <h2 className="text-center py-4 text-5xl font-bold">
         Alguns de nossos móveis
