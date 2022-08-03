@@ -2,7 +2,7 @@ import react, { ReactNode } from "react";
 
 const PrincipalText: react.FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <p className="text-sm lg:text-base xl:text-xl 2xl:text-3xl font-thin">
+    <p className="text-lg lg:text-xl xl:text-2xl 2xl:text-4xl font-thin">
       {children}
     </p>
   );

@@ -2,7 +2,7 @@ import react, { ReactNode } from "react";
 
 const HeaderH2: react.FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl 2xl:text-5xl font-normal text-center">
+    <h2 className="text-4xl sm:text-5x1 md:text-6x1 2xl:text-7xl font-normal text-center">
       {children}
     </h2>
   );

@@ -25,27 +25,30 @@ const Block_with_text_and_image: React.FC<Props> = ({
     <section
       className={`
       ${direction != "content" && "flex-col-reverse"} 
-      ${direction != "content" && "md:flex-row-reverse"} 
-      flex flex-col md:flex-row h-screen w-full justify-center overflow-hidden relative px-4 mt-8 gap-4
+      ${direction != "content" && "lg:flex-row-reverse"} 
+      flex flex-col lg:flex-row lg:h-4/5 max-h-fit w-full justify-center overflow-hidden relative px-4 pt-4 pb-4 gap-4
       `}
     >
-      <div className="flex flex-1 py-4 items-center justify-center">
-        <div
-          className="    
-        flex flex-col gap-5 justify-center items-center
+      <div
+        className="    
+        flex flex-col gap-4 flex-1 justify-center items-center
         bg-slate-800 bg-opacity-70 text-white z-10
         shadow-lg
-        rounded-lg 
+        rounded-3xl
         backdrop-blur-sm
-        w-fit h-fit
-        px-4 py-4
+        h-fit
+        px-4 md:px-8 py-12
         "
-        >
-          <HeaderH2>{textTitle}</HeaderH2>
-          <PrincipalText>{text}</PrincipalText>
-        </div>
+      >
+        <HeaderH2>{textTitle}</HeaderH2>
+        <PrincipalText>{text}</PrincipalText>
       </div>
-      <div className={`${!bgImage && relative}  flex flex-1 p-5`}>
+      <div
+        className={`${
+          !bgImage && "relative"
+        } rounded-3xl flex flex-1 w-full px-5`}
+        style={{ minHeight: "30rem" }}
+      >
         <Image
           src={image.url}
           layout="fill"

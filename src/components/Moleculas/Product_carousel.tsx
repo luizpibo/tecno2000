@@ -1,5 +1,8 @@
 import Image from "next/image";
+import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
+import { HeaderH2 } from "../Atomos/Headers";
+import { PrincipalText } from "../Atomos/Texts";
 
 interface IProduct {
   _modelApiKey: string;
@@ -13,55 +16,70 @@ interface IProduct_carousel {
   products: IProduct[];
 }
 const Product_carousel: React.FC<IProduct_carousel> = ({ products }) => {
+  const [currentProduct, setCurrentProduct] = useState<IProduct>(products[0]);
+
   return (
-    <div className="relative">
+    <div className="relative h-fit">
       <h2 className="text-center py-4 text-5xl font-bold">
         Alguns de nossos móveis
       </h2>
-      <Carousel
-        autoPlay
-        infiniteLoop
-        showThumbs={false}
-        showStatus={false}
-        interval={3500}
-      >
-        {products.map((product) => {
-          return (
-            <div
-              className="flex flex-col md:flex-row py-8 min-fit"
-              key={product.name}
-            >
-              <div className="flex relative h-96 2xl:h-screen w-full md:w-1/2 justify-center items-center">
-                <span className="bg-slate-600 h-48 w-48 rotate-45 rounded-3xl absolute top-0 left-10 shadow-xl" />
-                <span className="bg-slate-600 h-48 w-48 rotate-45 rounded-3xl absolute top-20 shadow-xl" />
-                <span className="bg-slate-600 h-48 w-48 rotate-45 rounded-3xl absolute bottom-0 right-16 shadow-xl" />
-                <Image
-                  src={product.mainImage.url}
-                  alt={`Imagem do produto ${product.name}`}
-                  layout="fill"
-                  objectFit="contain"
-                  objectPosition="center"
-                />
-              </div>
-              <div className="flex flex-col flex-1 justify-center p-4">
-                <div className="flex flex-col gap-4 bg-slate-800 bg-opacity-80 text-white rounded-3xl p-4 shadow-lg relative lg:-left-40 lg:-top-14">
-                  <h2 className="text-white text-lg md:text-xl lg:text-2xl">
-                    {product.name} | <span>{product.category}</span>
-                  </h2>
-                  <hr />
-                  <p>{product.description}</p>
-                  <a
-                    href={`${product.category}/${product.name}`}
-                    className="self-center px-4 py-3 w-fit text-slate-800 rounded-lg font-bold hover:shadow-2xl hover:scale-105 transition bg-slate-200"
-                  >
-                    Saiba mais
-                  </a>
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-4 py-4 relative">
+        <div className="h-fit w-full md:w-1/2 relative">
+          <span className="absolute w-full flex justify-center items-center">
+            <span className="-skew-x-12 overflow-hidden h-96 w-72">
+              <span className="flex flex-col gap-1 rotate-45 -translate-y-20 ">
+                <span className="flex bg-slate-600 w-fit -translate-x-36 shadow-sm">
+                  <span className="h-40 w-72" />
+                  <span className="h-40 w-72" />
+                </span>
+                <span className="flex bg-slate-600 w-fit -translate-x-36 shadow-sm">
+                  <span className="h-60 w-72" />
+                  <span className="h-60 w-72" />
+                </span>
+                <span className="flex bg-slate-600 w-fit -translate-x-36 shadow-sm">
+                  <span className="h-40 w-72" />
+                  <span className="h-40 w-72" />
+                </span>
+              </span>
+            </span>
+          </span>
+          <Carousel
+            autoPlay
+            infiniteLoop
+            showThumbs={false}
+            showStatus={false}
+            interval={4000}
+            onChange={(product) => setCurrentProduct(products[product])}
+          >
+            {products.map((product) => {
+              return (
+                <div className="h-96 w-full" key={product.name}>
+                  <Image
+                    src={product.mainImage.url}
+                    alt={`Imagem do produto ${product.name}`}
+                    layout="fill"
+                    objectFit="contain"
+                    objectPosition="center"
+                  />
                 </div>
-              </div>
-            </div>
-          );
-        })}
-      </Carousel>
+              );
+            })}
+          </Carousel>
+        </div>
+        <div className="w-3/4 lg:w-2/5 flex flex-col gap-4 bg-slate-800 bg-opacity-80 text-white rounded-3xl p-4 shadow-2xl relative px-4 md:px-8 py-12">
+          <HeaderH2>
+            {currentProduct.name} | <span>{currentProduct.category}</span>
+          </HeaderH2>
+          <hr />
+          <PrincipalText>{currentProduct.description}</PrincipalText>
+          <a
+            href={`${currentProduct.category}/${currentProduct.name}`}
+            className="self-center px-4 py-3 w-fit text-slate-800 rounded-lg font-bold hover:shadow-2xl hover:scale-105 transition bg-slate-200"
+          >
+            Saiba mais
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
