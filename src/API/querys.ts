@@ -42,8 +42,42 @@ const getAllSlugsQuery = gql`
   }
 `;
 
-const getPageQuery = (pageSlug: string) => {
-  return gql`
+const getAllCategoriesNameQuery = gql`
+  {
+    allProductCategories {
+      name
+    }
+  }
+`;
+
+const getAllCategoriesQuery = gql`
+  {
+    allProductCategories {
+      name
+      description
+      mainImage {
+        url
+        alt
+      }
+      id
+    }
+  }
+`;
+
+const getAllProductsByCategoryQuery = (productCategory: string) => gql`
+  {
+    allProducts(filter: { category: { eq: "${productCategory}" } }) {
+      name
+      mainImage {
+        alt
+        url
+      }
+      description
+    }
+  }
+`;
+
+const getPageBySlugQuery = (pageSlug: string) => gql`
     {
       page(filter: { slug: { eq: "${pageSlug}" } }) {
         slug
@@ -79,7 +113,9 @@ const getPageQuery = (pageSlug: string) => {
             _modelApiKey
             products {
               _modelApiKey
-              category
+              category {
+                name
+              }
               description
               name
               mainImage {
@@ -128,7 +164,30 @@ const getPageQuery = (pageSlug: string) => {
         }
       }
     }
-  `;
+`;
+
+const getAllCategories = async () => {
+  const { allProductCategories } = await request({
+    query: getAllCategoriesQuery,
+  });
+
+  return allProductCategories;
+};
+
+const getAllCategoriesName = async () => {
+  const { allProductCategories } = await request({
+    query: getAllCategoriesQuery,
+  });
+
+  return allProductCategories;
+};
+
+const getAllProductsByCategory = async (category: string) => {
+  const { allProductCategories } = await request({
+    query: getAllProductsByCategoryQuery(category),
+  });
+
+  return allProductCategories;
 };
 
 const getAllSlugPages = async () => {
@@ -142,11 +201,17 @@ const getAllSlugPages = async () => {
 };
 
 //Pega o conteúdo da home page
-const getPage = async (slug: string) => {
+const getPageBySlug = async (slug: string) => {
   const { page } = await request({
-    query: getPageQuery(slug),
+    query: getPageBySlugQuery(slug),
   });
   return page;
 };
 
-export { getAllSlugPages, getPage };
+export {
+  getAllSlugPages,
+  getPageBySlug,
+  getAllCategories,
+  getAllCategoriesName,
+  getAllProductsByCategory,
+};

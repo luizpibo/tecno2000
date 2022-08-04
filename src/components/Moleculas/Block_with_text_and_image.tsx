@@ -29,16 +29,18 @@ const Block_with_text_and_image: React.FC<Props> = ({
     <section
       className={`
       flex lg:h-4/5 max-h-fit w-full overflow-hidden relative pb-4 px-3 gap-4
-      ${direction == "content" ? "flex-col" : "flex-col-reverse"} 
-      ${direction == "content" ? "lg:flex-row" : "lg:flex-row-reverse"} 
-      ${verticalAlign === "start" && "items-start"}
-      ${verticalAlign === "center" && "items-center"}
-      ${verticalAlign === "end" && "items-end"}
-      ${bgImage && "p-4"}
-      ${bgImage && "w-full"}
-      ${bgImage && horizontalAlign === "start" && "justify-start"}
-      ${bgImage && horizontalAlign === "center" && "justify-center"}
-      ${bgImage && horizontalAlign === "end" && "justify-end"}
+      ${
+        direction == "content"
+          ? "flex-col lg:flex-row"
+          : "flex-col-reverse lg:flex-row-reverse"
+      }
+      ${bgImage ? "p-4 w-full shadow-xl" : ""}
+      ${verticalAlign === "start" ? "items-start" : ""}
+      ${verticalAlign === "center" ? "items-center" : ""}
+      ${verticalAlign === "end" ? "items-end" : ""}
+      ${bgImage && horizontalAlign === "start" ? "justify-start" : ""}
+      ${bgImage && horizontalAlign === "center" ? "justify-center" : ""}
+      ${bgImage && horizontalAlign === "end" ? "justify-end" : ""}
       `}
       style={{ minHeight: "30rem" }}
     >

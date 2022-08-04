@@ -6,7 +6,7 @@ import { PrincipalText } from "../Atomos/Texts";
 
 interface IProduct {
   _modelApiKey: string;
-  category: string;
+  category: { name: string };
   description: string;
   name: string;
   mainImage: { alt: string; url: string };
@@ -19,7 +19,7 @@ const Product_carousel: React.FC<IProduct_carousel> = ({ products }) => {
   const [currentProduct, setCurrentProduct] = useState<IProduct>(products[0]);
 
   return (
-    <div className="relative h-fit" >
+    <div className="relative h-fit">
       <h2 className="text-center py-4 text-5xl font-bold">
         Alguns de nossos móveis
       </h2>
@@ -53,7 +53,11 @@ const Product_carousel: React.FC<IProduct_carousel> = ({ products }) => {
           >
             {products.map((product) => {
               return (
-                <div className="h-96 w-full" key={product.name} style={{ minHeight: "30rem" }}>
+                <div
+                  className="h-96 w-full"
+                  key={product.name}
+                  style={{ minHeight: "30rem" }}
+                >
                   <Image
                     src={product.mainImage.url}
                     alt={`Imagem do produto ${product.name}`}
@@ -68,7 +72,7 @@ const Product_carousel: React.FC<IProduct_carousel> = ({ products }) => {
         </div>
         <div className="w-3/4 lg:w-2/5 flex flex-col gap-4 bg-slate-800 bg-opacity-80 text-white rounded-3xl p-4 shadow-2xl relative px-4 md:px-8 py-12">
           <HeaderH2>
-            {currentProduct.name} | <span>{currentProduct.category}</span>
+            {currentProduct.name} | <span>{currentProduct.category.name}</span>
           </HeaderH2>
           <hr />
           <PrincipalText>{currentProduct.description}</PrincipalText>
