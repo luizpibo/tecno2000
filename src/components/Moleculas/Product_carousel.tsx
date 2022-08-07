@@ -14,15 +14,16 @@ interface IProduct {
 
 interface IProduct_carousel {
   products: IProduct[];
+  block_title: string;
 }
-const Product_carousel: React.FC<IProduct_carousel> = ({ products }) => {
+const Product_carousel: React.FC<IProduct_carousel> = ({ products, block_title }) => {
   const [currentProduct, setCurrentProduct] = useState<IProduct>(products[0]);
 
   return (
     <div className="relative h-fit">
-      <h2 className="text-center py-4 text-5xl font-bold">
-        Alguns de nossos móveis
-      </h2>
+      <HeaderH2 className="text-center py-4 text-5xl font-bold">
+        {block_title}
+      </HeaderH2>
       <div className="flex flex-col lg:flex-row justify-center items-center gap-4 py-4 relative">
         <div className="h-fit w-full md:w-1/2 relative">
           <span className="absolute w-full h-full flex justify-center items-center">
@@ -77,7 +78,7 @@ const Product_carousel: React.FC<IProduct_carousel> = ({ products }) => {
           <hr />
           <PrincipalText>{currentProduct.description}</PrincipalText>
           <a
-            href={`${currentProduct.category}/${currentProduct.name}`}
+            href={`${currentProduct.category.name}/${currentProduct.name}`}
             className="self-center px-4 py-3 w-fit text-slate-800 rounded-lg font-bold hover:shadow-2xl hover:scale-105 transition bg-slate-200"
           >
             Saiba mais

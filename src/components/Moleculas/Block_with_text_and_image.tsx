@@ -16,6 +16,7 @@ interface Iimage {
   url: string;
   alt: string;
 }
+
 const Block_with_text_and_image: React.FC<Props> = ({
   bgImage,
   direction,

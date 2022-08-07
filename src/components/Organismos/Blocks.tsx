@@ -14,16 +14,12 @@ interface Block_with_text_and_image_props {
   _modelApiKey: string;
 }
 
-interface Slide {
-  slides: Block_with_text_and_image_props[];
-}
-
 const switchBlockComponent = (block, ...rest) => {
   switch (block._modelApiKey) {
     case "block_with_text_and_image":
       return <Block_with_text_and_image {...block} {...rest} />;
     case "product_carousel":
-      return <Product_carousel products={block.products} />;
+      return <Product_carousel products={block.products} block_title={block.blockTitle} {...rest}/>;
     default:
       return (
         <div>
