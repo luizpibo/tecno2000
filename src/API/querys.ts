@@ -155,9 +155,43 @@ const getPageBySlugQuery = (pageSlug: string) => gql`
     }
 `;
 
+const getProductByNameQuery = (productName: string) => gql`
+{
+  product(filter: {name: {eq: "${productName}"}}) {
+  name
+  description(markdown: true)
+  category {
+    name
+    slug
+  }
+  mainImage {
+    alt
+    url
+  }
+}
+}
+`;
+
 const getAllProductsByCategoryQuery = (productCategory: string) => gql`
   {
     allProducts(filter: { category: { eq: "${productCategory}" } }) {
+      name
+      description(markdown: true)
+      category {
+        name
+        slug
+      }
+      mainImage {
+        alt
+        url
+      }
+    }
+  }
+`;
+
+const getAllProductsQuery = gql`
+  {
+    allProducts {
       name
       description(markdown: true)
       category {
@@ -186,6 +220,13 @@ const getPageBySlug = async (slug: string) => {
   return page;
 };
 
+const getProductByName = async (productName: string) => {
+  const { product } = await request({
+    query: getProductByNameQuery(productName),
+  });
+  return product;
+};
+
 const getAllProductsByCategoryId = async (category: string) => {
   const { allProducts } = await request({
     query: getAllProductsByCategoryQuery(category),
@@ -212,12 +253,20 @@ const getAllCategories = async () => {
   return allProductCategories;
 };
 
+const getAllProducts = async () => {
+  const { allProducts } = await request({
+    query: getAllProductsQuery,
+  });
 
+  return allProducts;
+};
 
 export {
   getPageBySlug,
   getCategoryIdBySlug,
+  getProductByName,
   getAllSlugPages,
   getAllCategories,
+  getAllProducts,
   getAllProductsByCategoryId,
 };

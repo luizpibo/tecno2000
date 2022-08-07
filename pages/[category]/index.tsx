@@ -10,6 +10,7 @@ import { HeaderH2 } from "../../src/components/Atomos/Headers";
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
   const allCategoriesProps = await getAllCategories();
+  
   const allCategoriesPaths = allCategoriesProps.map((category) => {
     return { params: { category: category.slug } };
   });
@@ -27,7 +28,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const allProductsByCategoryId = await getAllProductsByCategoryId(
     id as string
   );
-  console.log("allProductsByCategory", allProductsByCategoryId);
 
   return {
     props: {
