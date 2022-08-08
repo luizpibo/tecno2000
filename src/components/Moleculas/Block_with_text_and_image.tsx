@@ -46,7 +46,9 @@ const Block_with_text_and_image: React.FC<IBlock> = ({
         lg:w-1/2
         px-4 md:px-8 py-12
         `}
-        data-aos="fade-up"
+        data-aos={
+          bgImage ? "zoom-in" : direction == "content" ? "fade-right" : "fade-left"
+        }
       >
         <HeaderH2>{textTitle}</HeaderH2>
         <PrincipalText>{text}</PrincipalText>

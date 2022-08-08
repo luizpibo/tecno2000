@@ -169,6 +169,10 @@ const getProductByNameQuery = (productName: string) => gql`
   product(filter: {name: {eq: "${productName}"}}) {
   name
   description(markdown: true)
+  gallery {
+    alt
+    url
+  }
   category {
     name
     slug

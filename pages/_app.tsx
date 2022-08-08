@@ -14,14 +14,14 @@ function MyApp({ Component, pageProps }) {
     AOS.init({ duration: 750 });
   }, []);
   return (
-    <div className="bg-gray-300">
+    <div className="bg-gradient-to-b from-gray-200 to-gray-300">
       <Head>
         <title>TECNO2000 - Móveis de escritório | Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="a melhor do brasil" />
       </Head>
       <NavBar />
-      <div className="min-h-screen">
+      <div className="min-h-screen overflow-hidden">
         <Component {...pageProps} />
       </div>
       <footer className="h-12 bg-slate-900 text-white">

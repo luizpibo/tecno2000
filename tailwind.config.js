@@ -1,9 +1,12 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
+  purge: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
+  ],
   darkMode: false,
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -11,13 +14,17 @@ module.exports = {
   ],
   theme: {
     extend: {
-      extend: {
-        fontFamily: {
-          "Roboto": ["Roboto", ...defaultTheme.fontFamily.sans],
-          "Barlow Condensed": ["Barlow Condensed", ...defaultTheme.fontFamily.sans]
-        },
+      fontFamily: {
+        Roboto: ["Roboto", ...defaultTheme.fontFamily.sans],
+        "Barlow Condensed": [
+          "Barlow Condensed",
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
     },
   },
-  plugins: [require("tw-elements/dist/plugin")],
+  plugins: [
+    require("tw-elements/dist/plugin"),
+    require("@tailwindcss/typography"),
+  ],
 };
