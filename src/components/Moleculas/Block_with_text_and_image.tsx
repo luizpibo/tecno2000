@@ -1,23 +1,10 @@
 import Image from "next/image";
-import { relative } from "path";
 import React from "react";
 import { HeaderH2 } from "../Atomos/Headers";
 import { PrincipalText } from "../Atomos/Texts";
-interface Props {
-  textTitle: string;
-  text: string;
-  direction: string;
-  verticalAlign: string;
-  horizontalAlign: string;
-  image: Iimage;
-  bgImage: boolean;
-}
-interface Iimage {
-  url: string;
-  alt: string;
-}
+import { IBlock } from "../../../pages";
 
-const Block_with_text_and_image: React.FC<Props> = ({
+const Block_with_text_and_image: React.FC<IBlock> = ({
   bgImage,
   direction,
   textTitle,
@@ -25,6 +12,7 @@ const Block_with_text_and_image: React.FC<Props> = ({
   image,
   verticalAlign,
   horizontalAlign,
+  isFullScreen,
 }) => {
   return (
     <section
@@ -43,7 +31,7 @@ const Block_with_text_and_image: React.FC<Props> = ({
       ${bgImage && horizontalAlign === "center" ? "justify-center" : ""}
       ${bgImage && horizontalAlign === "end" ? "justify-end" : ""}
       `}
-      style={{ minHeight: "30rem" }}
+      style={{ minHeight: isFullScreen ? "100vh" : "30rem" }}
       data-aos="fade-in"
     >
       <div

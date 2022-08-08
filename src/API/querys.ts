@@ -90,6 +90,8 @@ const getPageBySlugQuery = (pageSlug: string) => gql`
               text
               direction
               bgImage
+              verticalAlign
+              horizontalAlign
               image {
                 url
                 alt
@@ -122,7 +124,7 @@ const getPageBySlugQuery = (pageSlug: string) => gql`
         hero {
           ... on BlockWithTextAndImageRecord {
             textTitle
-            text(markdown: true)
+            text
             direction
             bgImage
             verticalAlign
@@ -135,10 +137,12 @@ const getPageBySlugQuery = (pageSlug: string) => gql`
           }
           ... on SlideRecord {
             slides {
-              direction
-              bgImage
               textTitle
               text
+              direction
+              bgImage
+              verticalAlign
+              horizontalAlign
               image {
                 url
                 alt

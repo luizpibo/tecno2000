@@ -14,16 +14,16 @@ interface Block_with_text_and_image_props {
   _modelApiKey: string;
 }
 
-const switchBlockComponent = (block, ...rest) => {
+const switchBlockComponent = (block, key: string) => {
   switch (block._modelApiKey) {
     case "block_with_text_and_image":
-      return <Block_with_text_and_image {...block} {...rest} />;
+      return <Block_with_text_and_image {...block} key={key} />;
     case "product_carousel":
       return (
         <Product_carousel
           products={block.products}
           block_title={block.blockTitle}
-          {...rest}
+          key={key}
         />
       );
     case "text_block":
@@ -37,8 +37,8 @@ const switchBlockComponent = (block, ...rest) => {
 const Blocks: React.FC<Props> = ({ blocks }) => {
   return (
     <>
-      {blocks.map((block,index) => {
-        return switchBlockComponent(block, `key=${block._modelApiKey+index}`);
+      {blocks.map((block, index) => {
+        return switchBlockComponent(block, `${block.textTitle} + ${index}`);
       })}
     </>
   );

@@ -4,15 +4,18 @@ import Head from "next/head";
 import NavBar from "../src/components/Organismos/NavBar";
 import { useEffect } from "react";
 import AOS from "aos";
-
+// or only core styles
+import "@splidejs/react-splide/css/core";
+// Default theme
+import "@splidejs/react-splide/css";
 import "aos/dist/aos.css";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    AOS.init({duration: 800});
+    AOS.init({ duration: 750 });
   }, []);
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-300">
       <Head>
         <title>TECNO2000 - Móveis de escritório | Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

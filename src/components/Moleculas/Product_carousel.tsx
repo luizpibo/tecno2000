@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import { Carousel } from "react-responsive-carousel";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { HeaderH2 } from "../Atomos/Headers";
 import { PrincipalText } from "../Atomos/Texts";
 
@@ -47,32 +47,39 @@ const Product_carousel: React.FC<IProduct_carousel> = ({
               </span>
             </span>
           </span>
-          <Carousel
-            autoPlay
-            infiniteLoop
-            showThumbs={false}
-            showStatus={false}
-            interval={4000}
-            onChange={(product) => setCurrentProduct(products[product])}
+          <Splide
+            className="thumbnail-carousel"
+            tag="section"
+            options={{
+              type: "fade",
+              rewind: true,
+              perPage: 1,
+              autoplay: true,
+              speed: 800,
+              interval: 4000,
+            }}
+            aria-labelledby="dynamic-slides-example-heading"
           >
             {products.map((product) => {
               return (
-                <div
-                  className="h-96 w-full"
-                  key={product.name}
-                  style={{ minHeight: "30rem" }}
-                >
-                  <Image
-                    src={product.mainImage.url}
-                    alt={`Imagem do produto ${product.name}`}
-                    layout="fill"
-                    objectFit="contain"
-                    objectPosition="center"
-                  />
-                </div>
+                <SplideSlide key={"produto " + product.name}>
+                  <div
+                    className="h-96 w-full"
+                    key={product.name}
+                    style={{ minHeight: "30rem" }}
+                  >
+                    <Image
+                      src={product.mainImage.url}
+                      alt={`Imagem do produto ${product.name}`}
+                      layout="fill"
+                      objectFit="contain"
+                      objectPosition="center"
+                    />
+                  </div>
+                </SplideSlide>
               );
             })}
-          </Carousel>
+          </Splide>
         </div>
         <div
           className="flex flex-col flex-1 p-4 m-3 gap-4 self-stretch shadow-2xl rounded-3xl relative lg:w-1/2 md:px-8 py-12 bg-slate-800 bg-opacity-80 text-white"
