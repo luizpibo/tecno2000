@@ -16,7 +16,10 @@ interface IProduct_carousel {
   products: IProduct[];
   block_title: string;
 }
-const Product_carousel: React.FC<IProduct_carousel> = ({ products, block_title }) => {
+const Product_carousel: React.FC<IProduct_carousel> = ({
+  products,
+  block_title,
+}) => {
   const [currentProduct, setCurrentProduct] = useState<IProduct>(products[0]);
 
   return (
@@ -71,7 +74,9 @@ const Product_carousel: React.FC<IProduct_carousel> = ({ products, block_title }
             })}
           </Carousel>
         </div>
-        <div className="w-3/4 lg:w-2/5 flex flex-col gap-4 bg-slate-800 bg-opacity-80 text-white rounded-3xl p-4 shadow-2xl relative px-4 md:px-8 py-12">
+        <div
+          className="flex flex-col gap-4 bg-slate-800 bg-opacity-80 text-white rounded-3xl p-4 shadow-2xl relative w-full lg:w-1/2 px-4 md:px-8 py-12"
+        >
           <HeaderH2 className="uppercase">
             {currentProduct.name} | <span>{currentProduct.category.name}</span>
           </HeaderH2>

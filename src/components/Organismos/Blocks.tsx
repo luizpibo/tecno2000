@@ -19,21 +19,26 @@ const switchBlockComponent = (block, ...rest) => {
     case "block_with_text_and_image":
       return <Block_with_text_and_image {...block} {...rest} />;
     case "product_carousel":
-      return <Product_carousel products={block.products} block_title={block.blockTitle} {...rest}/>;
-    default:
       return (
-        <div>
-          <h1>Carrouseu de produto</h1>
-        </div>
+        <Product_carousel
+          products={block.products}
+          block_title={block.blockTitle}
+          {...rest}
+        />
       );
+    case "text_block":
+      console.log("TEXTO");
+      break;
+    default:
+      console.log("block defaul", block._modelApiKey);
   }
 };
 
 const Blocks: React.FC<Props> = ({ blocks }) => {
   return (
     <>
-      {blocks.map((block) => {
-        return switchBlockComponent(block, `key=${block.textTitle}`);
+      {blocks.map((block,index) => {
+        return switchBlockComponent(block, `key=${block._modelApiKey+index}`);
       })}
     </>
   );

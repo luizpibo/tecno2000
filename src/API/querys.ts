@@ -113,11 +113,16 @@ const getPageBySlugQuery = (pageSlug: string) => gql`
               }
             }
           }
+          ... on TextBlockRecord {
+            _modelApiKey
+            text(markdown: true)
+            title
+          }
         }
         hero {
           ... on BlockWithTextAndImageRecord {
             textTitle
-            text
+            text(markdown: true)
             direction
             bgImage
             verticalAlign

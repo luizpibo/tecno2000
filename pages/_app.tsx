@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="description" content="a melhor do brasil" />
       </Head>
       <NavBar />
-      <div className="min-h-screen pt-28">
+      <div className="min-h-screen">
         <Component {...pageProps} />
       </div>
       <footer className="h-12 bg-zinc-900 text-white">

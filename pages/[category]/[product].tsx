@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import Image from "next/image";
 import { getAllProducts, getProductByName } from "../../src/API/querys";
 import { HeaderH2 } from "../../src/components/Atomos/Headers";
 
@@ -24,8 +25,15 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 export default function product({ product }) {
   return (
-    <div>
+    <div className="container flex mx-auto pt-28 m-auto gap-8">
+      <div className="flex-1 h-96 w-96 relative">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+        <Image src={product.mainImage.url} layout="fill" objectFit="cover" objectPosition="center"/>
+      </div>
+      <div className="flex flex-col flex-1 gap-6">
       <HeaderH2>{product.name}</HeaderH2>
+      {product.description}
+      </div>
     </div>
   );
 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

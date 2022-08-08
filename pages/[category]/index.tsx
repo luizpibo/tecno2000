@@ -10,7 +10,7 @@ import { HeaderH2 } from "../../src/components/Atomos/Headers";
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
   const allCategoriesProps = await getAllCategories();
-  
+
   const allCategoriesPaths = allCategoriesProps.map((category) => {
     return { params: { category: category.slug } };
   });
@@ -67,7 +67,7 @@ interface IProps {
 
 const Category: React.FC<IProps> = ({ products, category }) => {
   return (
-    <div className="container m-auto">
+    <div className="container m-auto pt-28">
       <HeaderH2>Produtos da categoria {category}</HeaderH2>
       <div className="flex gap-4 justify-center my-4 flex-wrap">
         {products.map((product) => {
@@ -77,8 +77,8 @@ const Category: React.FC<IProps> = ({ products, category }) => {
               href={`${product.category.slug}/${product.name}`}
             >
               <a className="flex flex-col py-2 h-fit relative justify-center items-center hover:scale-105 transition-all">
-                <span className="relative w-full h-full flex justify-center items-center z-0 -translate-x-1">
-                  <span className=" overflow-hidden h-96 w-80">
+                <span className="relative w-full h-full flex justify-center items-center z-0">
+                  <span className=" overflow-hidden h-96 w-80 rounded-lg">
                     <span className="flex flex-col gap-1 rotate-45 -translate-y-20 ">
                       <span className="flex bg-slate-600 w-fit -translate-x-36 shadow-sm">
                         <span className="h-40 w-72" />
@@ -104,7 +104,7 @@ const Category: React.FC<IProps> = ({ products, category }) => {
                 />
 
                 <div className="z-10 w-full absolute">
-                  <HeaderH2 className="text-gray-100 font-bold uppercase md:text-3xl bg-slate-500 -skew-x-12 -translate-x-1">
+                  <HeaderH2 className="text-gray-100 font-bold uppercase md:text-3xl bg-slate-500 shadow-lg">
                     {product.name}
                   </HeaderH2>
                 </div>

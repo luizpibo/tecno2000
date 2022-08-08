@@ -67,6 +67,7 @@ const Block_with_text_and_image: React.FC<Props> = ({
           layout="fill"
           objectFit="cover"
           objectPosition="center"
+          alt={`${image.alt}`}
           className={`${!bgImage && "rounded-3xl"}`}
         />
       ) : (
@@ -79,6 +80,7 @@ const Block_with_text_and_image: React.FC<Props> = ({
             layout="fill"
             objectFit="cover"
             objectPosition="center"
+            alt={`${image.alt}`}
             className={`${!bgImage && "rounded-3xl"}`}
           />
         </div>
