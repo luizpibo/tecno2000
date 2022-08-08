@@ -23,13 +23,13 @@ const Product_carousel: React.FC<IProduct_carousel> = ({
   const [currentProduct, setCurrentProduct] = useState<IProduct>(products[0]);
 
   return (
-    <div className="relative h-fit">
+    <div className="relative h-fit overflow-hidden">
       <HeaderH2 className="text-center py-4 text-5xl font-bold">
         {block_title}
       </HeaderH2>
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-4 py-4 relative">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-4 relative">
         <div className="h-fit w-full md:w-1/2 relative">
-          <span className="absolute w-full h-full flex justify-center items-center">
+          <span className="absolute w-full h-full flex justify-center items-center translate-x-1">
             <span className="-skew-x-12 overflow-hidden h-96 w-72">
               <span className="flex flex-col gap-1 rotate-45 -translate-y-20 ">
                 <span className="flex bg-slate-600 w-fit -translate-x-36 shadow-sm">
@@ -75,7 +75,8 @@ const Product_carousel: React.FC<IProduct_carousel> = ({
           </Carousel>
         </div>
         <div
-          className="flex flex-col gap-4 bg-slate-800 bg-opacity-80 text-white rounded-3xl p-4 shadow-2xl relative w-full lg:w-1/2 px-4 md:px-8 py-12"
+          className="flex flex-col flex-1 p-4 m-3 gap-4 self-stretch shadow-2xl rounded-3xl relative lg:w-1/2 md:px-8 py-12 bg-slate-800 bg-opacity-80 text-white"
+          data-aos="fade-out"
         >
           <HeaderH2 className="uppercase">
             {currentProduct.name} | <span>{currentProduct.category.name}</span>

@@ -44,6 +44,7 @@ const Block_with_text_and_image: React.FC<Props> = ({
       ${bgImage && horizontalAlign === "end" ? "justify-end" : ""}
       `}
       style={{ minHeight: "30rem" }}
+      data-aos="fade-in"
     >
       <div
         className={`  
@@ -57,6 +58,7 @@ const Block_with_text_and_image: React.FC<Props> = ({
         lg:w-1/2
         px-4 md:px-8 py-12
         `}
+        data-aos="fade-up"
       >
         <HeaderH2>{textTitle}</HeaderH2>
         <PrincipalText>{text}</PrincipalText>
