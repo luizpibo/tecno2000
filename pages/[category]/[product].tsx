@@ -51,7 +51,7 @@ const Product: React.FC<IProduct> = ({
   category,
 }) => {
   return (
-    <section className="container pt-16 m-auto py-8">
+    <section className="container mt-16 mb-4 rounded-lg m-auto border-2 border-solid border-slate-800 p-3">
       <Head>
         <title>
           TECNO2000 - {category.name.toUpperCase()} | {name.toUpperCase()}{" "}
@@ -60,24 +60,21 @@ const Product: React.FC<IProduct> = ({
         <meta name="description" content={description} />
       </Head>
       <div className="flex-col gap-8">
-        <main className="flex flex-col lg:flex-row mx-auto gap-10 items-center py-8 relative">
-          <span className="absolute w-full h-full hidden md:block">
+        <main className="flex flex-col lg:flex-row mx-auto gap-10 items-center py-8 relative rounded-lg shadow-lg overflow-hidden">
+          <span className="absolute w-full h-full hidden md:block rounded-lg">
             <Image
               src="/assets/screens/home/projetos.jpg"
-              className="rounded-lg "
+              className="filter blur-sm"
               layout="fill"
               objectFit="cover"
               objectPosition="center"
             />
-            <span className="absolute w-full h-full hidden md:block bg-slate-600 opacity-50 backdrop-blur-xl rounded-lg" />
+            <span className="absolute w-full h-full hidden md:block bg-slate-600 opacity-50" />
           </span>
-          <div
-            className="flex w-full md:w-3/4 lg:w-1/2 h-96 relative justify-center"
-            data-aos="fade-right"
-          >
-            <span className="absolute w-10/12 h-full">
-              <div className="absolute w-full h-full border-slate-800 border-4 border-solid rounded-lg -skew-x-12 translate-x-3 translate-y-3 bg-gray-800"></div>
-              <div className="absolute w-full h-full border-slate-800 border-4 border-solid rounded-lg -skew-x-12 bg-gray-200 drop-shadow-xl shadow-2xl"></div>
+          <div className="flex w-full md:w-3/4 lg:w-1/2 h-96 relative justify-center transition duration-300 hover:scale-105">
+            <span className="absolute w-10/12 h-full" data-aos="fade-right">
+              <div className="absolute w-full h-full border-slate-800 border-4 border-solid rounded-lg -skew-x-12 translate-x-3 translate-y-3 bg-opacity-80 blur-md bg-gray-800"></div>
+              <div className="absolute w-full h-full border-slate-800 border-4 border-solid rounded-lg -skew-x-12 bg-gray-200 bg-opacity-80 drop-shadow-xl shadow-2xl"></div>
             </span>
             <Image
               src={mainImage.url}
@@ -88,19 +85,30 @@ const Product: React.FC<IProduct> = ({
             />
           </div>
           <div
-            className="grid flex-1 mx-3 my-4 p-4 bg-gray-200 shadow-xl backdrop-contrast-150 bg-opacity-75 rounded-lg backdrop-blur-sm "
+            className="grid flex-1 mx-3 my-4 p-4 bg-gray-200 shadow-xl backdrop-contrast-150 bg-opacity-80 rounded-lg backdrop-blur-sm"
             data-aos="fade-left"
           >
-            <HeaderH2 className="uppercase font-semibold text-slate-900">{`${name} | ${category.name}`}</HeaderH2>
-            <MarkDownText>{description}</MarkDownText>
+            <HeaderH2 className="uppercase font-semibold text-slate-900 filter drop-shadow-2xl">{`${name} | ${category.name}`}</HeaderH2>
+            <MarkDownText className="filter drop-shadow-2xl">
+              {description}
+            </MarkDownText>
           </div>
         </main>
-        {gallery && (
-          <SimpleSlide
-            slides={gallery}
-            arialabelledby={`Galeria de imagens do produto ${name}`}
-          />
-        )}
+        <div className="flex gap-4 justify-center items-center">
+          <div className="w-full lg:w-1/2 lg:m-4">
+            <HeaderH2>Especificações</HeaderH2>
+            <MarkDownText>{description}</MarkDownText>
+          </div>
+          {gallery && (
+            <div className="w-1/2">
+              <HeaderH2>Galeria</HeaderH2>
+              <SimpleSlide
+                slides={gallery}
+                arialabelledby={`Galeria de imagens do produto ${name}`}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
