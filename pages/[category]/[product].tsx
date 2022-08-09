@@ -88,7 +88,7 @@ const Product: React.FC<IProduct> = ({
             className="grid flex-1 mx-3 my-4 p-4 bg-gray-200 shadow-xl backdrop-contrast-150 bg-opacity-80 rounded-lg backdrop-blur-sm"
             data-aos="fade-left"
           >
-            <HeaderH2 className="uppercase font-semibold text-slate-900 filter drop-shadow-2xl">{`${name} | ${category.name}`}</HeaderH2>
+            <HeaderH2 className="uppercase font-semibold text-slate-900 filter drop-shadow-2xl">{`${category.name} | ${name}`}</HeaderH2>
             <MarkDownText className="filter drop-shadow-2xl">
               {description}
             </MarkDownText>
