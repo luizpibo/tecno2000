@@ -107,7 +107,7 @@ const getPageBySlugQuery = (pageSlug: string) => gql`
               category {
                 name
               }
-              description
+              description(markdown: true)
               name
               mainImage {
                 alt

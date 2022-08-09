@@ -77,7 +77,7 @@ const SimpleSlide: React.FC<ISimpleSlide> = ({
   };
 
   return (
-    <div className="w-full lg:w-3/4 overflow-hidden shadow-lg mx-auto rounded-xl mb-4 bg-gradient-to-b from-gray-200 to-gray-300">
+    <div className="w-full lg:w-3/4 overflow-hidden shadow-lg mx-auto rounded-xl my-4 bg-gradient-to-b from-gray-200 to-gray-300">
       <Splide
         tag="section"
         options={mainOptions}
@@ -101,6 +101,7 @@ const SimpleSlide: React.FC<ISimpleSlide> = ({
           );
         })}
       </Splide>
+      <hr className="border-slate-700"/>
       <Splide
         options={thumbsOptions}
         ref={slideRef}

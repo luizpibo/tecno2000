@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { HeaderH2 } from "../Atomos/Headers";
-import { PrincipalText } from "../Atomos/Texts";
+import { MarkDownText } from "../Atomos/Texts";
 
 interface IProduct {
   _modelApiKey: string;
@@ -58,6 +58,9 @@ const Product_carousel: React.FC<IProduct_carousel> = ({
               speed: 800,
               interval: 4000,
             }}
+            onMoved={(splide, index) => {
+              setCurrentProduct(products[index]);
+            }}
             aria-labelledby="dynamic-slides-example-heading"
           >
             {products.map((product) => {
@@ -85,14 +88,17 @@ const Product_carousel: React.FC<IProduct_carousel> = ({
           className="flex flex-col flex-1 p-4 m-3 gap-4 self-stretch shadow-2xl rounded-3xl relative lg:w-1/2 md:px-8 py-12 bg-slate-800 bg-opacity-80 text-white"
           data-aos="fade-out"
         >
-          <HeaderH2 className="uppercase">
+          <HeaderH2 className="uppercase" data-aos="fade-left">
             {currentProduct.name} | <span>{currentProduct.category.name}</span>
           </HeaderH2>
           <hr />
-          <PrincipalText>{currentProduct.description}</PrincipalText>
+          <MarkDownText data-aos="fade-up" className="text-gray-100">
+            {currentProduct.description}
+          </MarkDownText>
           <a
             href={`${currentProduct.category.name}/${currentProduct.name}`}
             className="self-center px-4 py-3 w-fit text-slate-800 rounded-lg font-bold hover:shadow-2xl hover:scale-105 transition bg-slate-200"
+            data-aos="fade-on"
           >
             Saiba mais
           </a>

@@ -50,8 +50,8 @@ const Block_with_text_and_image: React.FC<IBlock> = ({
           bgImage ? "zoom-in" : direction == "content" ? "fade-right" : "fade-left"
         }
       >
-        <HeaderH2>{textTitle}</HeaderH2>
-        <PrincipalText>{text}</PrincipalText>
+        <HeaderH2 data-aos="fade-up">{textTitle}</HeaderH2>
+        <PrincipalText data-aos="fade-up">{text}</PrincipalText>
       </div>
       {bgImage ? (
         <Image

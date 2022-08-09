@@ -1,3 +1,4 @@
+import { MarkDownText } from "../Atomos/Texts";
 import Block_with_text_and_image from "../Moleculas/Block_with_text_and_image";
 import Product_carousel from "../Moleculas/Product_carousel";
 
@@ -27,7 +28,9 @@ const switchBlockComponent = (block, key: string) => {
         />
       );
     case "text_block":
-      console.log("TEXTO");
+      <MarkDownText>
+        {block}
+      </MarkDownText>
       break;
     default:
       console.log("block defaul", block._modelApiKey);
