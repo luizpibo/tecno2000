@@ -22,8 +22,8 @@ const NavBar: React.FC<NavBarProps> = ({
   console.log("ProductsCategories links", ProductsCategories);
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
-    <nav className="flex flex-wrap items-center justify-between py-3 2xl:py-8 text-slate-700 w-screen z-50 fixed overflow-hidden shadow-xl rounded-b-xl backdrop-blur-sm bg-opacity-90 bg-gray-300">
-      <div className="container flex flex-col md:flex-row flex-wrap items-center justify-between px-4 mx-auto ">
+    <nav className="flex items-center justify-between py-3 2xl:py-8 text-slate-700 w-screen z-50 fixed shadow-xl rounded-b-xl backdrop-blur-sm bg-opacity-90 bg-gray-300">
+      <div className="container flex flex-row items-center overflow-scroll justify-between px-4 mx-auto ">
         <Link href={"/"}>
           <a>
             <span>
@@ -36,10 +36,10 @@ const NavBar: React.FC<NavBarProps> = ({
             </span>
           </a>
         </Link>
-        <ul className="mr-12">
+        <ul className="md:mr-12">
           <li>
             <Link href="/categorias">
-              <a className="font-semibold uppercase px-4 py-2 hover:border-2  rounded-lg transition-all mx-4">
+              <a className="font-semibold uppercase px-4 py-2 hover:border-2  rounded-lg transition-all">
                 Categorias
               </a>
             </Link>

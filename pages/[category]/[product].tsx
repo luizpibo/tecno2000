@@ -51,7 +51,7 @@ const Product: React.FC<IProduct> = ({
   category,
 }) => {
   return (
-    <section className="container mt-20 mb-4 rounded-lg m-auto border-2 border-solid border-slate-800 p-3">
+    <section className="container mt-20 mb-4 rounded-lg m-auto md:border-2 md:border-solid md:border-slate-800 md:p-3">
       <Head>
         <title>
           TECNO2000 - {category.name.toUpperCase()} | {name.toUpperCase()}{" "}
@@ -59,8 +59,8 @@ const Product: React.FC<IProduct> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={description} />
       </Head>
-      <div className="flex-col gap-8">
-        <main className="flex flex-col lg:flex-row mx-auto gap-10 items-center py-8 relative rounded-lg shadow-lg overflow-hidden">
+      <div className="flex-col gap-4">
+        <main className="flex flex-col lg:flex-row mx-auto gap-10 items-center relative rounded-lg shadow-lg overflow-hidden">
           <span className="absolute w-full h-full hidden md:block rounded-lg">
             <Image
               src="/assets/screens/home/projetos.jpg"
@@ -71,7 +71,7 @@ const Product: React.FC<IProduct> = ({
             />
             <span className="absolute w-full h-full hidden md:block bg-slate-600 opacity-50" />
           </span>
-          <div className="flex w-full md:w-3/4 lg:w-1/2 h-96 relative justify-center transition duration-300 hover:scale-105">
+          <div className="flex w-5/6 md:w-3/4 lg:w-1/2 h-96 my-4 relative justify-center transition duration-300 hover:scale-105">
             <span className="absolute w-10/12 h-full" data-aos="fade-right">
               <div className="absolute w-full h-full border-slate-800 border-4 border-solid rounded-lg -skew-x-12 translate-x-3 translate-y-3 bg-opacity-80 blur-md bg-gray-800"></div>
               <div className="absolute w-full h-full border-slate-800 border-4 border-solid rounded-lg -skew-x-12 bg-gray-200 bg-opacity-80 drop-shadow-xl shadow-2xl"></div>
@@ -99,7 +99,7 @@ const Product: React.FC<IProduct> = ({
             <HeaderH2>Especificações</HeaderH2>
             <MarkDownText>{description}</MarkDownText>
           </div>
-          {gallery.length>0 && (
+          {gallery.length > 0 && (
             <div className="flex-1">
               <HeaderH2>Galeria</HeaderH2>
               <SimpleSlide
