@@ -51,7 +51,7 @@ const Product: React.FC<IProduct> = ({
   category,
 }) => {
   return (
-    <section className="container mt-16 mb-4 rounded-lg m-auto border-2 border-solid border-slate-800 p-3">
+    <section className="container mt-20 mb-4 rounded-lg m-auto border-2 border-solid border-slate-800 p-3">
       <Head>
         <title>
           TECNO2000 - {category.name.toUpperCase()} | {name.toUpperCase()}{" "}
@@ -94,13 +94,13 @@ const Product: React.FC<IProduct> = ({
             </MarkDownText>
           </div>
         </main>
-        <div className="flex gap-4 justify-center items-center">
-          <div className="w-full lg:w-1/2 lg:m-4">
+        <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
+          <div className="flex-1 max-w-screen-md lg:m-4">
             <HeaderH2>Especificações</HeaderH2>
             <MarkDownText>{description}</MarkDownText>
           </div>
-          {gallery && (
-            <div className="w-1/2">
+          {gallery.length>0 && (
+            <div className="flex-1">
               <HeaderH2>Galeria</HeaderH2>
               <SimpleSlide
                 slides={gallery}

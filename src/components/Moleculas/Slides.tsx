@@ -101,7 +101,7 @@ const SimpleSlide: React.FC<ISimpleSlide> = ({
           );
         })}
       </Splide>
-      <hr className="border-slate-700"/>
+      {/* <hr className="border-slate-700"/>
       <Splide
         options={thumbsOptions}
         ref={slideRef}
@@ -122,7 +122,7 @@ const SimpleSlide: React.FC<ISimpleSlide> = ({
             </SplideSlide>
           );
         })}
-      </Splide>
+      </Splide> */}
     </div>
   );
 };

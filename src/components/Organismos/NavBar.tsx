@@ -18,17 +18,17 @@ const NavBar: React.FC<NavBarProps> = ({
   homeUrl,
   logoUrl,
 }) => {
-  console.log("Enterprise links", enterprise)
-  console.log("ProductsCategories links", ProductsCategories)
+  console.log("Enterprise links", enterprise);
+  console.log("ProductsCategories links", ProductsCategories);
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <nav className="flex flex-wrap items-center justify-between py-3 2xl:py-8 text-slate-700 w-screen z-50 fixed overflow-hidden shadow-xl rounded-b-xl backdrop-blur-sm bg-opacity-90 bg-gray-300">
-      <div className="container flex flex-col md:flex-row flex-wrap items-center justify-center px-4 mx-auto ">
-        {/* <Link href={homeUrl}>
+      <div className="container flex flex-col md:flex-row flex-wrap items-center justify-between px-4 mx-auto ">
+        <Link href={"/"}>
           <a>
             <span>
-              {/* <Image
-                src={logoUrl}
+              <Image
+                src="/logo.png"
                 width={200}
                 height={36}
                 alt="logo tecno2000"
@@ -36,8 +36,15 @@ const NavBar: React.FC<NavBarProps> = ({
             </span>
           </a>
         </Link>
-        <DropDownLinksList linksList={ProductsCategories} />
-        <DropDownLinksList linksList={enterprise} /> */}
+        <ul className="mr-12">
+          <li>
+            <Link href="/categorias">
+              <a className="font-semibold uppercase px-4 py-2 hover:border-2  rounded-lg transition-all mx-4">
+                Categorias
+              </a>
+            </Link>
+          </li>
+        </ul>
       </div>
     </nav>
   );
@@ -45,7 +52,7 @@ const NavBar: React.FC<NavBarProps> = ({
 
 export const getStaticProps: GetStaticProps = async () => {
   const categories = await getAllCategories();
-  console.log("Categorias", categories)
+  console.log("Categorias", categories);
   const ProductsCategories = categories.map((category) => {
     return {
       description: category.name,
@@ -66,7 +73,7 @@ export const getStaticProps: GetStaticProps = async () => {
       ProductsCategories: ProductsCategories,
       enterprise: enterprise,
       homeUrl: "localhost:3000",
-      logoUrl: "/logo.png"
+      logoUrl: "/logo.png",
     },
   };
 };
