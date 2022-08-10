@@ -94,13 +94,13 @@ const Product: React.FC<IProduct> = ({
             </MarkDownText>
           </div>
         </main>
-        <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col lg:flex-row gap-4 justify-center items-center p-3">
           <div className="flex-1 max-w-screen-md lg:m-4">
             <HeaderH2>Especificações</HeaderH2>
             <MarkDownText>{description}</MarkDownText>
           </div>
           {gallery.length > 0 && (
-            <div className="flex-1">
+            <div className="flex-1 aspect-video">
               <HeaderH2>Galeria</HeaderH2>
               <SimpleSlide
                 slides={gallery}
