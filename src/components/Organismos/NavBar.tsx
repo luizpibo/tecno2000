@@ -23,7 +23,7 @@ const NavBar: React.FC<NavBarProps> = ({
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <nav className="flex items-center justify-between py-3 2xl:py-8 text-slate-700 w-screen z-50 fixed shadow-xl rounded-b-xl backdrop-blur-sm bg-opacity-90 bg-gray-300">
-      <div className="container flex flex-row items-center overflow-scroll justify-between px-4 mx-auto ">
+      <div className="container flex flex-row items-center overflow-scroll md:overflow-hidden justify-between px-4 mx-auto ">
         <Link href={"/"}>
           <a>
             <span>
